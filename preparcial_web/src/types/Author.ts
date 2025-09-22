@@ -4,4 +4,5 @@ export interface Author {
     birthDate: string;     
     description: string;
     image?: string;
+    favorite: boolean;
   }

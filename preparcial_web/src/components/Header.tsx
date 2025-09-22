@@ -21,6 +21,9 @@ export default function Header() {
           <Link href="/crear" className={linkClass("/crear")}>
             Crear Autor
           </Link>
+          <Link href="/favoritos" className={linkClass("/favoritos")}>
+            Lista de Favoritos
+          </Link>
         </nav>
       </div>
     </header>

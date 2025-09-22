@@ -10,6 +10,11 @@ type State = {
   createAuthor: (data: Omit<Author, "id">) => Promise<void>;
   updateAuthor: (id: number, data: Omit<Author, "id">) => Promise<void>;
   deleteAuthor: (id: number) => Promise<void>;
+
+  favorites: number[];
+  isFavorite: (id: number) => boolean;
+  toggleFavorite: (id: number) => void;
+
 };
 
 export const useAuthorsStore = create<State>((set, get) => ({
@@ -55,5 +60,16 @@ export const useAuthorsStore = create<State>((set, get) => ({
     const res = await fetch(`${api.authors}/${id}`, { method: "DELETE" });
     if (!res.ok) throw new Error("No se pudo eliminar el autor");
     set(s => ({ authors: s.authors.filter(a => a.id !== id) }));
+  },
+
+  favorites: [],
+  isFavorite: (id) => { return get().favorites.includes(id); },
+  toggleFavorite: (id) => {
+    set(s => {
+      const isFav = s.favorites.includes(id);
+      return {
+        favorites: isFav ? s.favorites.filter(favId => favId !== id) : [...s.favorites, id]
+      };
+    });
   },
 }));

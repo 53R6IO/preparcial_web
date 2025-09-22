@@ -44,13 +44,13 @@ export default function AuthorForm({
     <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 max-w-xl">
       <div>
         <label className="block text-sm font-medium">Nombre</label>
-        <input className="mt-1 w-full rounded border p-2" {...register("name")} />
+        <input className="mt-1 w-full rounded border p-2" {...register("name")} aria-labelledby="name"/>
         {errors.name && <p className="text-sm text-red-600">{errors.name.message}</p>}
       </div>
 
       <div>
         <label className="block text-sm font-medium">Fecha de nacimiento</label>
-        <input type="date" className="mt-1 w-full rounded border p-2" {...register("birthDate")} />
+        <input type="date" className="mt-1 w-full rounded border p-2" {...register("birthDate") } aria-labelledby="date" />
         {errors.birthDate && <p className="text-sm text-red-600">{errors.birthDate.message}</p>}
       </div>
 
@@ -66,7 +66,7 @@ export default function AuthorForm({
         {errors.image && <p className="text-sm text-red-600">{errors.image.message}</p>}
       </div>
 
-      <button className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">{submitText}</button>
+      <button className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"  aria-label="Guardar cambios del Formulario">{submitText}</button>
     </form>
   );
 }
